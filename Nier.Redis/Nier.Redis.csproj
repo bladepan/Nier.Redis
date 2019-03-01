@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Authors>Pan</Authors>
+        <Description>A utility library that provides some useful redis operations </Description>
+        <Copyright>MIT</Copyright>
+        <Title>Nier Redis Toolbox</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Queue\BoundedQueueLpush.lua" />
+      <EmbeddedResource Include="List\fixedSizedListLpush.lua" />
+      <None Remove="Hash\hsetVersion.lua" />
+      <EmbeddedResource Include="Hash\hsetVersion.lua" />
+      <None Remove="Hash\hsetTtl.lua" />
+      <EmbeddedResource Include="Hash\hsetTtl.lua" />
+      <None Remove="Hash\hmsetTtl.lua" />
+      <EmbeddedResource Include="Hash\hmsetTtl.lua" />
+    </ItemGroup>
+
+</Project>
