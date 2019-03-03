@@ -8,6 +8,10 @@
         <Description>A utility library that provides some useful redis operations </Description>
         <Copyright>MIT</Copyright>
         <Title>Nier Redis Toolbox</Title>
+        <PackageProjectUrl>https://github.com/bladepan/Nier.Redis</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/bladepan/Nier.Redis</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseUrl>https://github.com/bladepan/Nier.Redis/blob/master/LICENSE</PackageLicenseUrl>
     </PropertyGroup>
 
     <ItemGroup>
