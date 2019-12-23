@@ -18,5 +18,10 @@ jobs:
     - run: dotnet build --configuration Release Nier.Redis
     - name: Create the package
       run: dotnet pack --configuration Release Nier.Redis
-    - name: Publish the package to GPR
-      run: dotnet nuget push Nier.Redis/bin/Release/*.nupkg --source https://nuget.pkg.github.com/bladepan/index.json --api-key ${{secrets.GITHUB_TOKEN}}
+    - name: Publish nuget
+      run: |
+            for f in ./Nier.Redis/bin/Release/*.nupkg
+            do
+              curl -vX PUT -u "bladepan:${{ secrets.GITHUB_TOKEN }}" -F package=@$f https://nuget.pkg.github.com/bladepan/
+            done
+      shell: bash
