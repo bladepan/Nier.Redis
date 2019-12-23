@@ -1,0 +1,22 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+        source-url: https://nuget.pkg.github.com/bladepan/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}  
+    - run: dotnet build --configuration Release Nier.Redis
+    - name: Create the package
+      run: dotnet pack --configuration Release Nier.Redis
+    - name: Publish the package to GPR
+      run: dotnet nuget push Nier.Redis/bin/Release/*.nupkg --source https://nuget.pkg.github.com/bladepan/index.json --api-key ${{secrets.GITHUB_TOKEN}}
