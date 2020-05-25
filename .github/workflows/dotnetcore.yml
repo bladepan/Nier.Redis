@@ -15,9 +15,11 @@ jobs:
         source-url: https://nuget.pkg.github.com/bladepan/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}  
-    - run: dotnet build --configuration Release Nier.Redis
+    - run: dotnet build --configuration Release
     - name: Create the package
-      run: dotnet pack --configuration Release Nier.Redis
+      run: dotnet pack --configuration Release
+    - name: Publish Nier.Redis
+      run: dotnet nuget push Nier.Redis/bin/Release/*.nupkg -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Publish nuget
       run: |
             for f in ./Nier.Redis/bin/Release/*.nupkg
